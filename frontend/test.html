@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout with Sidebar</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      .main {
+        display: flex;
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+      }
+      .sidebar {
+        width: 200px; /* Width of the sidebar */
+        background: #ddd;
+        padding: 10px;
+        border-right: 2px solid #000; /* Border for the sidebar */
+        box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Takes the remaining width */
+      }
+      .header {
+        background: #f4f4f4;
+        padding: 10px;
+        border-bottom: 2px solid #000; /* Border for the header */
+      }
+      .content {
+        flex: 1; /* Takes the remaining height */
+        background: #eaeaea;
+        padding: 10px;
+        border-top: 2px solid #000; /* Border for the content */
+        overflow: auto; /* Optional: adds scroll if content overflows */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="sidebar">Sidebar</div>
+      <div class="container">
+        <div class="header">Header</div>
+        <div class="content">Content area</div>
+      </div>
+    </div>
+  </body>
+</html>
