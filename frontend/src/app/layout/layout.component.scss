@@ -1,0 +1,38 @@
+.sidebar {
+  transition: transform 0.7s ease, opacity 0.5s ease;
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 1000;
+}
+
+.content {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  /* Adjust the breakpoint as needed */
+  .sidebar {
+    position: fixed; /* Fix position to overlay content */
+    top: 0;
+    left: 0;
+    width: 250px; /* Adjust width as needed */
+    height: 100vh; /* Full height */
+    background: white; /* Or any background color */
+    z-index: 1000; /* Ensure it’s above other content */
+    transform: translateX(-100%); /* Initially off-screen */
+  }
+}
+
+/* Add this to your layout.component.css */
+.sidebar-hidden {
+  transform: translateX(0);
+  opacity: 1;
+  position: absolute;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}

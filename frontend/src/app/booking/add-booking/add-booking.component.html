@@ -1,0 +1,213 @@
+<div class="bg-gray-200 p-5">
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+      <div class="col">
+        <div class="px-2">
+          <p class="text-gray-600">Booking</p>
+          <h1 class="text-3xl font-bold">Add New Booking</h1>
+        </div>
+      </div>
+      <div class="col-3 flex justify-content-end align-items-center">
+        <p-button
+          styleClass="bg-white mx-2 text-gray-700 font-semibold"
+          label="Reset"
+          outlined="false"
+        />
+
+        <p-button
+          styleClass="bg-white  text-gray-700 font-semibold"
+          label="Close"
+          outlined="false"
+        />
+      </div>
+    </div>
+
+    <div class="grid p-4 bg-white">
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Check in</div>
+        <p-calendar
+          formControlName="checkInDate"
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="icondisplay"
+          styleClass="w-full"
+          (onSelect)="onCheckInChange($event)"
+        />
+      </div>
+
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Duration</div>
+        <p-dropdown
+          [options]="items"
+          formControlName="duration"
+          placeholder="Select Duration"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          (onChange)="onDurationChange($event.value)"
+          styleClass="w-full"
+        />
+      </div>
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Check out</div>
+        <p-calendar
+          formControlName="checkOutDate"
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="icondisplay"
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+
+    <!-- room details -->
+    <div class="grid bg-white px-4">
+      <div class="col">
+        <h3>Room Details</h3>
+      </div>
+    </div>
+
+    <div class="grid px-4 bg-white">
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Room Type</div>
+        <p-dropdown
+          [options]="roomTypes"
+          formControlName="roomType"
+          placeholder="Select Room type"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Room Number</div>
+        <p-dropdown
+          [options]="roomNumbers"
+          formControlName="roomNumber"
+          placeholder="Select Room No"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          styleClass="w-full"
+        />
+      </div>
+      <div class="col-4">
+        <div class="mb-3 font-semibold">Guests</div>
+        <p-dropdown
+          [options]="guestOptions"
+          formControlName="guests"
+          placeholder="Guest Count"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+
+    <!-- user details -->
+    <div class="grid bg-white px-4">
+      <div class="col mt-3 mb-0">
+        <h3>Guest Details</h3>
+      </div>
+    </div>
+
+    <div class="grid px-4 bg-white">
+      <div class="col-4">
+        <div class="flex flex-column gap-2">
+          <label class="font-semibold" for="Full name">Full Name</label>
+          <input
+            formControlName="fullName"
+            type="text"
+            pInputText
+            id="full name"
+            aria-describedby="Full Name"
+          />
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="flex flex-column gap-2">
+          <label class="font-semibold" for="email">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            pInputText
+            id="Email"
+            aria-describedby="Email"
+          />
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="flex flex-column gap-2">
+          <label class="font-semibold" for="mobile number"
+            >Mobbile Number</label
+          >
+          <input
+            formControlName="mobileNumber"
+            type="text"
+            pInputText
+            id="mobile number"
+            aria-describedby="mobile number"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- extras -->
+    <div class="grid p-4 bg-white">
+      <div class="col">
+        <div class="mb-3">
+          <h3>Extras</h3>
+        </div>
+        <div formArrayName="extras" class="grid">
+          <div *ngFor="let extra of extras; let i = index" class="col-3">
+            <p-checkbox
+              [inputId]="'extra-' + i"
+              [label]="extra.label"
+              [value]="extra.value"
+              [formControlName]="i"
+              binary="true"
+            ></p-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost Summary -->
+    <div class="grid p-4 mt-3 bg-white">
+      <div class="col">
+        <h3 class="font-semibold mb-3 font-bold">Cost Summary</h3>
+        <div class="grid">
+          <div class="col-6">Room Total Price:</div>
+          <div class="col-6 text-right">{{ getRoomPrice() | currency }}</div>
+
+          <div class="col-6">Extras Price:</div>
+          <div class="col-6 text-right">{{ getExtrasPrice() | currency }}</div>
+
+          <div class="col-6">Sub Total:</div>
+          <div class="col-6 text-right">{{ getSubTotal() | currency }}</div>
+
+          <div class="col-6">Discount:</div>
+          <div class="col-6 text-right">{{ discount | currency }}</div>
+
+          <div class="col-6 text-2xl font-bold text-orange-500">
+            Total Price:
+          </div>
+          <div class="col-6 text-2xl text-right font-bold text-orange-500">
+            {{ getTotalPrice() | currency }}
+          </div>
+
+          <div class="col mt-3">
+            <p-button
+              [loading]="loading"
+              type="submit"
+              label="Book Room"
+              styleClass="bg-primary text-white w-full h-full text-xl font-bold"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-toast></p-toast>
+  <!-- Ensure this is present in your template -->
+</div>
