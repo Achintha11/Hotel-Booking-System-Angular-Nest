@@ -1,0 +1,90 @@
+<div class="card">
+  <p-toast />
+
+  <p-table
+    styleClass="inner_table"
+    #dt
+    [value]="bookings"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'name',
+      'country.name',
+      'representative.name',
+      'status'
+    ]"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    [(selection)]="selectedBookings"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Manage bookings</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="bg-primary" style="width: 4rem, bac">
+          <p-tableHeaderCheckbox />
+        </th>
+        <th class="bg-primary" pSortableColumn="name" style="min-width: 15rem">
+          Guest <p-sortIcon field="name" />
+        </th>
+        <th class="bg-primary">Check in</th>
+        <th class="bg-primary" pSortableColumn="price">
+          Check out <p-sortIcon field="price" />
+        </th>
+        <th
+          class="bg-primary"
+          pSortableColumn="category"
+          style="min-width: 10rem"
+        >
+          Room type <p-sortIcon field="category" />
+        </th>
+        <th class="bg-primary" pSortableColumn="rating">
+          Room No <p-sortIcon field="rating" />
+        </th>
+
+        <th class="bg-primary"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-booking>
+      <tr class="font-semibold">
+        <td>
+          <p-tableCheckbox [value]="booking" />
+        </td>
+        <td>
+          {{ booking.fullName }}
+        </td>
+        <td>
+          {{ booking.checkInDate | date }}
+        </td>
+        <td>
+          {{ booking.checkOutDate | date }}
+        </td>
+        <td>
+          {{ booking.roomType }}
+        </td>
+        <td>
+          {{ booking.roomNumber }}
+        </td>
+
+        <td>
+          <p-button label=" Details" styleClass="bg-orange-500 font-semibold" />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ bookings ? bookings.length : 0 }} bookings.
+      </div>
+    </ng-template>
+  </p-table>
+</div>

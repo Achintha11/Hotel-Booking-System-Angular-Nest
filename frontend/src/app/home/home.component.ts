@@ -72,6 +72,6 @@ export class HomeComponent {
   }
 
   navigateToAddBooking() {
-    this.router.navigate(['add-booking']);
+    this.router.navigate(['/bookings/add-booking']);
   }
 }

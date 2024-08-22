@@ -1,0 +1,15 @@
+:host ::ng-deep .p-dialog .product-image {
+  width: 150px;
+  margin: 0 auto 2rem auto;
+  display: block;
+}
+
+.inner_table .ui-paginator {
+  background: red;
+}
+.inner_table
+  .ui-paginator
+  .ui-paginator-pages
+  .ui-paginator-page.ui-state-active {
+  background: red;
+}
