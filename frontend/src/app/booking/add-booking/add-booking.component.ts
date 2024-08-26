@@ -123,6 +123,8 @@ export class AddBookingComponent {
         },
         error: (error) => {
           console.error('Error adding booking:', error);
+          this.bookingForm.reset();
+
           this.loading = false;
         },
       });
