@@ -15,7 +15,8 @@ export class BookingService {
     return this.http.post(this.apiUrl, booking);
   }
 
-  getBookings(): Observable<{ bookingsData: Booking[] }> {
-    return this.http.get<{ bookingsData: Booking[] }>(this.apiUrl);
+  // Adjust the return type to an array of Booking objects
+  getBookings(): Observable<Booking[]> {
+    return this.http.get<Booking[]>(this.apiUrl);
   }
 }

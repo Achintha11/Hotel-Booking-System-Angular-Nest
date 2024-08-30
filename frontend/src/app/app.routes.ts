@@ -11,6 +11,12 @@ export const routes: Routes = [
     path: 'test',
     component: TestComponentComponent,
   },
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'prefix',
+  },
   {
     path: 'home',
     component: HomeComponent,

@@ -124,6 +124,12 @@ export class AddBookingComponent {
         error: (error) => {
           console.error('Error adding booking:', error);
           this.bookingForm.reset();
+          this.messageService.add({
+            severity: 'error',
+            summary: 'error',
+            detail: 'Booking Adding Fail!',
+            life: 3000,
+          });
 
           this.loading = false;
         },
