@@ -21,8 +21,8 @@ export class BookingComponent implements OnInit {
     this.bookingService.getBookings().subscribe({
       next: (response) => {
         console.log('Data received in BookingComponent:', response);
-        if (response && response.bookingsData) {
-          this.bookings = response.bookingsData; // Extract the bookingsData array
+        if (response) {
+          this.bookings = response; // Extract the bookingsData array
           console.log('Bookings:', this.bookings);
         } else {
           console.error('Unexpected response format:', response);
