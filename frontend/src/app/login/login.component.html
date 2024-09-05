@@ -1,0 +1,70 @@
+<div class="container min-h-screen">
+  <div class="overlay z-1 absolute"></div>
+  <div class="grid h-screen z-2 relative flex">
+    <!-- Left column: Hotel name -->
+    <div
+      class="col p-5 flex flex-column justify-content-center align-items-center"
+    >
+      <h1 class="anton-regular">
+        Hotel<br />
+        Green Star
+      </h1>
+    </div>
+
+    <!-- Right column: Login Form -->
+    <div
+      class="col p-5 flex flex-column justify-content-center align-items-center"
+    >
+      <div class="form-container glass-effect p-5">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h1 class="text-white text-5xl">Log In</h1>
+
+          <!-- Username input group -->
+          <div class="p-field">
+            <label class="text-lg" for="username">Username</label>
+            <p-inputGroup class="mt-3">
+              <p-inputGroupAddon>
+                <i class="pi pi-user"></i>
+              </p-inputGroupAddon>
+              <input
+                id="username"
+                type="text"
+                pInputText
+                placeholder="Username"
+                formControlName="email"
+                name="username"
+                required
+              />
+            </p-inputGroup>
+          </div>
+
+          <!-- Password input group -->
+          <div class="p-field">
+            <label class="text-lg" for="password">Password</label>
+            <p-inputGroup class="mt-3">
+              <p-inputGroupAddon>
+                <i class="pi pi-lock"></i>
+              </p-inputGroupAddon>
+              <p-password
+                id="password1"
+                type="password"
+                [feedback]="false"
+                placeholder="Password"
+                [style]="{ width: '100%' }"
+                [inputStyle]="{
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  color: 'white'
+                }"
+                [toggleMask]="true"
+                formControlName="password"
+              ></p-password>
+            </p-inputGroup>
+          </div>
+
+          <!-- Login Button -->
+          <p-button label="Log In" type="submit" class="p-mt-3"></p-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
