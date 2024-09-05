@@ -1,0 +1,70 @@
+.container {
+  background-image: url("../../../public/login-bg.jpg");
+  background-repeat: none;
+  background-size: cover;
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+.overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Black with 50% opacity */
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.2); /* Glass effect */
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.p-field {
+  margin-bottom: 1.5rem;
+}
+label {
+  color: white;
+  font-size: 1rem;
+}
+
+input[pInputText] {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+}
+
+p-button {
+  width: 100%;
+}
+
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-size: 6rem;
+  color: white;
+  letter-spacing: 10px;
+  line-height: 1.5;
+}
+
+.custom-password-input {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+}
+
+.p-password .p-password-toggle {
+  color: #ff0000; /* Set the color of the toggle mask icon */
+}
